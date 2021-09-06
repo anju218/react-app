@@ -6,11 +6,10 @@ import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import ChartJS from './Candlestick';
+import Candlestick from './Candlestick';
 import { useEffect ,useState} from 'react';
 import MadeData from "./Data";
 import LineChart from './LineChart';
-
 
 // const useStyles = makeStyles({
 //     root: {
@@ -33,28 +32,28 @@ function Chartcontainer() {
     const [data,setData]=useState([]);
     useEffect(()=>{
         let Data = require('./Stock-List.json');
-        setData(Data);
+        setData(Data['key']);
     },[])
-    console.log(data);
+    //console.log(data);
     const [chartsToDisplay, setChartsToDisplay] = useState([]);
 
-    const getChart = async () => {
-        const charts = [];
-        charts.push(<ChartJS key="AAPL" data={data} />);
-        setChartsToDisplay(charts);
-    };
+    // const getChart = async () => {
+    //     const charts = [];
+    //     charts.push(<ChartJS key="AAPL" data={data} />);
+    //     setChartsToDisplay(charts);
+    // };
 
-    useEffect(() => {
-        getChart();
-    }, []);
-    console.log(chartsToDisplay);
+    // useEffect(() => {
+    //     getChart();
+    // }, []);
+    //console.log(chartsToDisplay);
     //const classes = useStyles();
     //const bull = <span className={classes.bullet}>•</span>;
     return (
         <div>
             <Card variant="outlined">
                 <CardContent>
-                    <LineChart/>
+                    <Candlestick/>
                 </CardContent>
                         
             </Card>

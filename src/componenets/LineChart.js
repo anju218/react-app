@@ -1,71 +1,54 @@
-import React from 'react';
-import Plot from 'react-plotly.js';
+// import React from 'react'
+// import { Line } from 'react-chartjs-2'
 
-class LineChart extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      stockChartXValues: [],
-      stockChartYValues: []
-    }
-  }
+// function LineChart () {
+//   const data = {
+//     labels: [
+//       'Jan',
+//       'Feb',
+//       'Mar',
+//       'April',
+//       'May'
+//     ],
+//     datasets: [
+//       {
+//         label: 'Sales 2020 (M)',
+//         data: [3, 2, 2, 1, 5],
+//         borderColor: ['rgba(255, 206, 86, 0.2)'],
+//         backgroundColor: ['rgba(255, 206, 86, 0.2)'],
+//         pointBackgroundColor: 'rgba(255, 206, 86, 0.2)',
+//         pointBorderColor: 'rgba(255, 206, 86, 0.2)'
+//       },
+//       {
+//         label: 'Sales 2019 (M)',
+//         data: [1, 3, 2, 2, 3],
+//         borderColor: ['rgba(54, 162, 235, 0.2)'],
+//         backgroundColor: ['rgba(54, 162, 235, 0.2)'],
+//         pointBackgroundColor: 'rgba(54, 162, 235, 0.2)',
+//         pointBorderColor: 'rgba(54, 162, 235, 0.2)'
+//       }
+//     ]
+//   }
 
-  componentDidMount() {
-    this.fetchStock();
-  }
+//   const options = {
+//     title: {
+//       display: true,
+//       text: 'Line Chart'
+//     },
+//     scales: {
+//       yAxes: [
+//         {
+//           ticks: {
+//             min: 0,
+//             max: 6,
+//             stepSize: 1
+//           }
+//         }
+//       ]
+//     }
+//   }
 
-  fetchStock() {
-    const pointerToThis = this;
-    console.log(pointerToThis);
-    //const API_KEY = 'HGJWFG4N8AQ66ICD';
-    let StockSymbol = 'AAPL';
-    let API_Call = require('./Stock-List.json');
-    let stockChartXValuesFunction = [];
-    let stockChartYValuesFunction = [];
+//   return <Line data={data} options={options} />
+// }
 
-    fetch(API_Call)
-      .then(
-        function(response) {
-          return response.json();
-        }
-      )
-      .then(
-        function(data) {
-          console.log(data);
-
-          for (var key in data) {
-            stockChartXValuesFunction.push(key);
-            stockChartYValuesFunction.push(data['0']['open']);
-          }
-
-          // console.log(stockChartXValuesFunction);
-          pointerToThis.setState({
-            stockChartXValues: stockChartXValuesFunction,
-            stockChartYValues: stockChartYValuesFunction
-          });
-        }
-      )
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Stock Market</h1>
-        <Plot
-          data={[
-            {
-              x: this.state.stockChartXValues,
-              y: this.state.stockChartYValues,
-              type: 'scatter',
-              mode: 'lines+markers',
-              marker: {color: 'red'},
-            }
-          ]}
-          layout={{width: 720, height: 440, title: 'A Fancy Plot'}}
-        />
-      </div>
-    )
-  }
-}
-
-export default LineChart;
+// export default LineChart
